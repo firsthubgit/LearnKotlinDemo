@@ -1,6 +1,14 @@
 package com.learn.kotlin.high
 
 fun  main(){
+    //定义一个lambda
+    fun main(args: Array<String>) {
+        //(Int, Int)表示参数类型
+        // ->Int 表示返回值
+        val sumLambda: (Int, Int) -> Int = {x,y -> x+y}
+        println(sumLambda(1,2))  // 输出 3
+    }
+
     //lambda  https://juejin.im/entry/58a382da61ff4b0058ab4542
     val numbers = mutableListOf("one", "two", "q","three")
 
