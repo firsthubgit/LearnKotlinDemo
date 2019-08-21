@@ -1,15 +1,12 @@
 package com.learn.kotlin
 
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.*
+import kotlin.system.measureTimeMillis
 
-fun get(x : Int) : Int = when(x){
-        1 -> 1
-        else -> 0
-    }
-
-fun main(){
-    println(get(1))
-    println(get(0))
-
+fun main() = runBlocking {
+    var s : String = ""
+    print(s.toFloat())
 }
 
 
