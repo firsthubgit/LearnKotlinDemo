@@ -18,6 +18,13 @@ fun  main(){
         println(it)
     }
     //输出 one  two  three
+    //或者使用匿名函数代替lambda表达式，使return返回到函数的
+    numbers.forEach(fun(value : String){
+        if(value == "q"){
+            return
+        }
+        print(value +"  ")
+    })
 
 
     numbers.forEach ({ it ->
