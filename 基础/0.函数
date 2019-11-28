@@ -1,0 +1,133 @@
+**目录**
+
+<!--- TOC -->
+
+* 函数
+  * [单体表达式函数](#1单体表达式函数)
+  * [可变参数](#2可变参数)
+  * [中缀表示法](#3中缀表示法)
+  * [函数作用域](#4函数作用域)
+    * [局部函数](#局部函数)
+    * [成员函数](#成员函数)
+  * [尾递归函数](#5尾递归函数) 
+  * [lambda表达式](#6lambda表达式)
+  * [匿名函数](#7匿名函数)
+
+
+ 
+  
+<!--- END_TOC -->
+
+  
+  
+# 1.单体表达式函数
+当函数返回单个表达式时，可以省略花括号并且在 = 符号之后指定代码体即可
+> fun double(x: Int): Int = x * 2
+
+当返回值类型可由编译器推断时，显式声明返回类型是可选的：
+>fun double(x: Int) = x * 2
+
+
+<br/>
+
+# 2.可变参数
+
+```kotlin
+fun <T> asList(vararg ts: T): List<T> {
+    val result = ArrayList<T>()
+    for (t in ts) // ts is an Array
+        result.add(t)
+    return result
+}
+
+```
+
+只有一个参数可以标注为 vararg。如果 vararg 参数不是列表中的最后一个参数， 可以使用命名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部传一个 lambda。
+
+<br/>
+
+当我们调用 vararg-函数时，我们可以一个接一个地传参，例如 asList(1, 2, 3)，或者，如果我们已经有一个数组并希望将其内容传给该函数，我们使用伸展（spread）操作符（在数组前面加 *）：
+
+    val a = arrayOf(1, 2, 3) 
+    val list = asList(-1, 0, *a, 4)
+
+
+<br/>
+
+# 3.中缀表示法
+可以省略调用的点和圆括号  
+中缀函数必须满足以下要求：   
+- 它们必须是成员函数或扩展函数；  
+- 它们必须只有一个参数；  
+- 其参数不得接受可变数量的参数且不能有默认值。
+
+```
+infix fun Int.shl(x: Int): Int { …… }
+
+// 用中缀表示法调用该函数
+1 shl 2
+
+// 等同于这样
+1.shl(2)
+```
+注意运算时候与加 或 与 等运算的优先级
+
+
+# 4.函数作用域
+Kotlin 中函数可以在文件顶层声明
+
+### 局部函数
+Kotlin 支持局部函数，即一个函数在另一个函数内部： 
+``` 
+fun dfs(graph: Graph) {
+    fun dfs(current: Vertex, visited: MutableSet<Vertex>) {
+        if (!visited.add(current)) return
+        for (v in current.neighbors)
+            dfs(v, visited)
+    }
+
+    dfs(graph.vertices[0], HashSet())
+}
+```
+
+局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，visited 可以是局部变量：
+
+```
+fun dfs(graph: Graph) {
+    val visited = HashSet<Vertex>()
+    fun dfs(current: Vertex) {
+        if (!visited.add(current)) return
+        for (v in current.neighbors)
+            dfs(v)
+    }
+
+    dfs(graph.vertices[0])
+}
+```
+
+### 成员函数
+成员函数是在类或对象内部定义的函数： 
+``` 
+class Sample() {
+    fun foo() { print("Foo") }
+}
+```
+
+# 5.尾递归函数
+当一个函数用`tailrec`修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本
+```kotlin
+val eps = 1E-10 // "good enough", could be 10^-15
+
+tailrec fun findFixPoint(x: Double = 1.0): Double
+        = if (Math.abs(x - Math.cos(x)) < eps) x else findFixPoint(Math.cos(x))
+```
+
+# 6.lambda表达式
+ 参考
+ [这里](../blob/master/app/src/main/java/com/learn/kotlin/high/Lambda.kt)
+ 
+ 
+# 7.匿名函数
+
+
+
