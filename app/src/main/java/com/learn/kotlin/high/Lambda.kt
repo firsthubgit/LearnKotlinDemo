@@ -35,12 +35,22 @@ fun  main(){
     }
     //输出 one  two  three
     //或者使用匿名函数代替lambda表达式，使return返回到函数的
+    //return 从最近的使用fun关键字声明 的函数返回
     numbers.forEach(fun(value : String){
         if(value == "q"){
             return
         }
         print(value +"  ")
     })
+
+    //如果函数只有这么一个 Lambda 表达式参数，
+    //前面那个不就是么，剩下一个小括号也没什么用，干脆也丢掉吧：
+    //如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略
+    //这个 return会直接结束main函数
+    numbers.forEach{
+        if(it == "q") return
+        println(it)
+    }
 
 
     numbers.forEach ({ it ->
@@ -54,13 +64,7 @@ fun  main(){
         println(it)
     }
 
-    //如果函数只有这么一个 Lambda 表达式参数，
-    //前面那个不就是么，剩下一个小括号也没什么用，干脆也丢掉吧：
-    //如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略
-    numbers.forEach{
-        if(it == "q") return
-        println(it)
-    }
+
 
 
     //如果这个 Lambda 表达式里面只有一个函数调用，
