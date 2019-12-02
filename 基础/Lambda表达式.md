@@ -10,3 +10,14 @@
 
 
 <!--- END_TOC -->
+
+
+Kotlin lambda表达式是如何在JVM上实现的？   
+
+Java的匿名类原理： 匿名类会在编译期生成新的.class文件    
+
+<br/>
+
+Java8的lambda
+
+
