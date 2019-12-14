@@ -19,3 +19,8 @@ for (index in array.indices) {
     }
 
 ```
+
+
+[6].internal 关键字
+internal和public,pirvate一样，可以修饰属性，函数，类
+使用internal修饰的扩展函数或工具类函数。其他的module不能访问
