@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-platform-android'
+
+
 android {
     compileSdkVersion 28
     defaultConfig {
