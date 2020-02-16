@@ -52,13 +52,9 @@ fun main(){
     //注意: 与 Java 不同的是，Kotlin 中数组是不型变(协变)的（invariant）
     open class A{
     }
-    class B : A {
-        constructor() : super(){
-        }
+    class B : A() {
+
     }
-    class B2 : A(){
-    }
-//    class B3 : A{}//ERROR
 
     val bArray  = Array<B>(3, {B()})
     val aArray = emptyArray<A>() //空数组
