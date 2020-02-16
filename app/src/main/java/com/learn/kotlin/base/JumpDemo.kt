@@ -14,7 +14,8 @@ fun main(){
 
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach lit@{
-        if (it == 3) return@lit // 局部返回到该 lambda 表达式的调用者，即 forEach 循环
+        if (it == 3)
+            return@lit // 局部返回到该 lambda 表达式的调用者，即 forEach 循环
         print(it)
     }
     print(" done with explicit label")

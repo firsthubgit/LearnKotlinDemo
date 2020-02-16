@@ -2,7 +2,7 @@ package com.learn.kotlin.clazzobj
 
 
 //顶层声明
-//用过全局静态属性
+//用作全局静态属性
 val MY_TYPE_1 : String = "heihei"
 //用作全局静态方法
 fun test1(name : String) {
